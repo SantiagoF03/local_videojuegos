@@ -232,7 +232,7 @@ footer p{margin:0}
   border-radius:.5rem;
   display:inline-block;
 }
-body[data-page="inicio"] .breadcrumb a[href$="index_games.html"],
+body[data-page="inicio"] .breadcrumb a[href$="index.html"],
 body[data-page="nosotros"] .breadcrumb a[href$="about_games.html"],
 body[data-page="productos"] .breadcrumb a[href$="products_games.html"],
 body[data-page="contacto"] .breadcrumb a[href$="contact_games.html"]{
