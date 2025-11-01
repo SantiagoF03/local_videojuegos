@@ -205,6 +205,25 @@ footer{
 }
 footer p{margin:0}
 
+.promo-badge{ 
+      display:inline-block; 
+      font-size:.8rem; 
+      background: rgba(255,112,67,.18); 
+      border:1px solid rgba(255,112,67,.30); 
+      color:#E5E5E5; 
+      padding:.25rem .5rem; 
+      border-radius:.5rem; 
+      margin-left:.5rem;
+}
+.results p{ margin:.25rem 0;}
+
+.results strong{ 
+      background: rgba(255,112,67,.18); 
+      border:1px solid rgba(255,112,67,.30); 
+      padding:.1rem .4rem; 
+      border-radius:.5rem; 
+}
+    
 .breadcrumb{
   grid-column:2;
   justify-self:center;
@@ -223,7 +242,7 @@ footer p{margin:0}
   margin:0;
   padding:0;
   justify-content:center;
-  width:max-content;
+  width:100%;  
 }
 .breadcrumb a{
   color:var(--text-color);
@@ -232,13 +251,26 @@ footer p{margin:0}
   border-radius:.5rem;
   display:inline-block;
 }
+.card-title small{
+  font-size:.8rem;margin-left:.5rem;display:inline-block;
+  background:rgba(255,112,67,.18);border:1px solid rgba(255,112,67,.30);
+  padding:.25rem .5rem;border-radius:.5rem;color:var(--text-color)
+}
+.card .section-content p{margin:.25rem 0}
+.card .section-content mark{
+  background:rgba(255,112,67,.18);border:1px solid rgba(255,112,67,.30);
+  padding:.1rem .4rem;border-radius:.5rem;color:inherit
+}
+
 body[data-page="inicio"] .breadcrumb a[href$="index.html"],
 body[data-page="nosotros"] .breadcrumb a[href$="about_games.html"],
 body[data-page="productos"] .breadcrumb a[href$="products_games.html"],
-body[data-page="contacto"] .breadcrumb a[href$="contact_games.html"]{
-  background:rgba(255,112,67,.18);
-  border:1px solid rgba(255,112,67,.30);
+body[data-page="contacto"] .breadcrumb a[href$="contact_games.html"],
+body[data-page="promos"] .breadcrumb a[href$="promociones.html"]{
+  background: rgba(255,112,67,.18);
+  border: 1px solid rgba(255,112,67,.30);
 }
+
 
 @media (max-width:600px){
   .portada h1{font-size:2.2rem}
