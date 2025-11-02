@@ -12,6 +12,7 @@ function getPrice(selectEl) {
   return p;
 }
 
+
 function calcPromoA() {
   const prod = document.getElementById('productoA');
   const cant = Number(document.getElementById('cantidadA').value) || 0;
@@ -27,19 +28,23 @@ function calcPromoA() {
   document.getElementById('totalA').textContent = money(total);
 }
 
+
 function calcPromoB() {
-  const prod = document.getElementById('productoB');
-  const cant = Number(document.getElementById('cantidadB').value) || 0;
-  const price = getPrice(prod);
+  const s1 = document.getElementById('productoB1');
+  const s2 = document.getElementById('productoB2');
+  const s3 = document.getElementById('productoB3');
 
-  const subtotal = price * cant;
-  const gratis = Math.floor(cant / 3);
-  const descuento = gratis * price;
-  const total = Math.max(0, subtotal - descuento);
+  const prices = [s1, s2, s3].map(s => s ? getPrice(s) : 0);
+  const valid  = prices.filter(p => p > 0);
 
-  document.getElementById('subtotalB').textContent = money(subtotal);
-  document.getElementById('descuentoB').textContent = `${money(descuento)}`;
-  document.getElementById('totalB').textContent = money(total);
+  const subtotal  = prices.reduce((a, p) => a + p, 0);
+  const descuento = (valid.length === 3) ? Math.min(...prices) : 0;
+  const total     = Math.max(0, subtotal - descuento);
+
+  const $ = id => document.getElementById(id);
+  $('subtotalB').textContent  = money(subtotal);
+  $('descuentoB').textContent = money(descuento);
+  $('totalB').textContent     = money(total);
 }
 
 function calcPromoC() {
@@ -57,15 +62,24 @@ function calcPromoC() {
 }
 
 function bindEvents() {
-  [['productoA','cantidadA', calcPromoA],
-   ['productoB','cantidadB', calcPromoB],
-   ['productoC','cantidadC', calcPromoC]].forEach(([selId, qtyId, fn]) => {
-    const s = document.getElementById(selId);
-    const q = document.getElementById(qtyId);
-    s.addEventListener('change', fn);
-    q.addEventListener('input', fn);
-    fn()
+const sA = document.getElementById('productoA');
+  const qA = document.getElementById('cantidadA');
+  if (sA) sA.addEventListener('change', calcPromoA);
+  if (qA) qA.addEventListener('input',  calcPromoA);
+  calcPromoA();
+
+  ['productoB1', 'productoB2', 'productoB3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('change', calcPromoB);
   });
-}
+  calcPromoB();
+
+  const sC = document.getElementById('productoC');
+  const qC = document.getElementById('cantidadC');
+  if (sC) sC.addEventListener('change', calcPromoC);
+  if (qC) qC.addEventListener('input',  calcPromoC);
+  calcPromoC();
+  };
+
 
 document.addEventListener('DOMContentLoaded', bindEvents);
